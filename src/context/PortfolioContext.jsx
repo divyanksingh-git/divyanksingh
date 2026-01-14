@@ -1,6 +1,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { DATA as STATIC_DATA } from '../config/data.jsx';
 import { THEMES as STATIC_THEMES, ICON_SIZE as STATIC_ICON_SIZE } from '../config/theme.jsx';
+import { 
+  analytics, 
+  db, 
+  logEvent, 
+  ref, 
+  onValue, 
+  runTransaction,
+  firestore, collection, addDoc, serverTimestamp
+} from '../config/firebase';
 
 // Create Context
 const PortfolioContext = createContext();
@@ -23,6 +32,10 @@ export const PortfolioProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // --- ANALYTICS & STATS STATE ---
+  const [visitCount, setVisitCount] = useState("---");
+  const [formStatus, setFormStatus] = useState('idle');
+
   // --- Effects ---
   useEffect(() => {
     const timer = setTimeout(() => setIsBooting(false), 1200);
@@ -36,6 +49,42 @@ export const PortfolioProvider = ({ children }) => {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
+
+  // Easter Egg Constants
+  const sessionKey = 'NEVER_GONNA_GIVE_YOU_UP';
+  const sessionValue = 'NEVER_GONNA_LET_YOU_DOWN';
+
+  useEffect(() => {
+    // 1. Log Analytics
+    logEvent(analytics, 'page_view', { page_title: 'Home Portfolio' });
+
+    // 2. Database Reference
+    const visitsRef = ref(db, 'portfolio_stats/visits');
+
+    // 3. LISTEN: Real-time Sync + Frontend Offset (323)
+    const unsubscribe = onValue(visitsRef, (snapshot) => {
+      const dbValue = snapshot.exists() ? snapshot.val() : 0;
+      // We add 323 to the database value for the display
+      setVisitCount(dbValue + 323); 
+    });
+
+    // 4. INCREMENT: Transaction Logic
+    const hasVisited = sessionStorage.getItem(sessionKey);
+
+    if (!hasVisited) {
+      runTransaction(visitsRef, (currentVisits) => {
+        // Increment the DB value (starting from 0 if it doesn't exist)
+        return (currentVisits || 0) + 1;
+      }).then(() => {
+        sessionStorage.setItem(sessionKey, sessionValue);
+        logEvent(analytics, 'unique_visitor_incremented');
+      }).catch((err) => {
+        console.error("Counter transaction failed:", err);
+      });
+    }
+
+    return () => unsubscribe();
+  }, []);
 
   // --- Actions ---
   const addLog = (msg) => {
@@ -62,6 +111,26 @@ export const PortfolioProvider = ({ children }) => {
     setExpandedFolders(prev => prev.includes(folderId) ? [] : [folderId]);
   };
 
+  // --- FIRESTORE CONTACT ACTION ---
+  const submitContactForm = async (formData, recaptchaToken) => {
+    setFormStatus('sending');
+    try {
+      await addDoc(collection(firestore, 'messages'), {
+        ...formData,
+        recaptchaToken,
+        createdAt: serverTimestamp(),
+      });
+      setFormStatus('success');
+      addLog(`[SYSTEM] Message transmitted successfully.`);
+      setTimeout(() => setFormStatus('idle'), 5000);
+    } catch (error) {
+      setFormStatus('error');
+      addLog(`[ERROR] Transmission failed.`);
+      console.error(error);
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
+  };
+
   const getTerminalPath = () => {
     const id = activeNode;
     switch(id) {
@@ -84,7 +153,8 @@ export const PortfolioProvider = ({ children }) => {
     data: STATIC_DATA,
     themes: STATIC_THEMES,
     iconSize: STATIC_ICON_SIZE,
-
+    visitCount,
+    
     // State
     activeNode,
     expandedFolders,
@@ -93,7 +163,8 @@ export const PortfolioProvider = ({ children }) => {
     theme: currentTheme,
     darkMode,
     mobileMenuOpen,
-    
+    formStatus,
+
     // Actions
     setActiveNode,
     setExpandedFolders,
@@ -103,7 +174,9 @@ export const PortfolioProvider = ({ children }) => {
     setMobileMenuOpen,
     handleNavigate,
     toggleFolder,
-    getTerminalPath
+    getTerminalPath,
+    submitContactForm,
+    addLog
   };
 
   return (

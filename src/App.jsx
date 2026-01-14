@@ -23,6 +23,7 @@ const PortfolioContent = () => {
     isBooting, 
     getTerminalPath, 
     setMobileMenuOpen, 
+    visitCount,
     iconSize, // from Context
     data      // from Context
   } = usePortfolio();
@@ -94,54 +95,59 @@ const PortfolioContent = () => {
         </div>
 
         <footer className="px-6 md:px-12 lg:px-24 py-12 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-           
-           {/* LEFT SIDE: Identity & Contacts */}
-           <div className="flex flex-col gap-2">
-               <div className="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.4em]">
-                  DIVYANK SINGH — SOFTWARE ENGINEER
-               </div>
-               <div className="text-[10px] font-bold text-slate-300 dark:text-slate-700 uppercase tracking-widest">
-                  Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-               </div>
-               <div className="flex gap-3 justify-center md:justify-start text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">
-                  <a href={`mailto:${data.email}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors lowercase">{data.email}</a>
-                  <span className="opacity-30">/</span>
-                  <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">LinkedIn</a>
-               </div>
-           </div>
+   
+   {/* LEFT SIDE: Identity & Socials */}
+   <div className="flex flex-col gap-2">
+       <div className="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.4em]">
+          DIVYANK SINGH — SOFTWARE ENGINEER
+       </div>
+       <div className="text-[10px] font-bold text-slate-300 dark:text-slate-700 uppercase tracking-widest">
+          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+       </div>
+       
+       {/* SOCIAL LINKS GROUP */}
+       <div className="flex gap-3 justify-center md:justify-start text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">
+          <a href={`mailto:${data.email}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors lowercase">Email</a>
+          <span className="opacity-30">/</span>
+          <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">LinkedIn</a>
+          <span className="opacity-30">/</span>
+          <a href={`https://${data.github}`} target="_blank" rel="noreferrer" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">GitHub</a>
+       </div>
+   </div>
 
-           {/* RIGHT SIDE: Location & Real-time Stats */}
-           <div className="flex flex-col md:items-end gap-1.5 text-[10px] font-black text-slate-300 dark:text-slate-700 uppercase tracking-widest">
-              
-              {/* Location Coordinates */}
-              <div className="flex gap-4">
-                  <span className={`${theme.text}`}>IIT PATNA (MS AICS)</span>
-                  <span className="hidden sm:inline">28.6692° N, 77.4538° E</span>
-              </div>
+   {/* RIGHT SIDE: Location & Real-time Stats */}
+   <div className="flex flex-col md:items-end gap-1.5 text-[10px] font-black text-slate-300 dark:text-slate-700 uppercase tracking-widest">
+      
+      {/* Location Coordinates */}
+      <div className="flex gap-4">
+          <span className={`${theme.text}`}>IIT PATNA (MS AICS)</span>
+          <span className="hidden sm:inline">PRAYAGRAJ, INDIA</span>
+      </div>
 
-              {/* Live Firebase Counter */}
-              <div className="flex items-center gap-2 mt-1 opacity-80 hover:opacity-100 transition-opacity">
-                 
-                 {/* Logo Container */}
-                 <div className="relative flex items-center justify-center w-4 h-4">
-                    {/* The Pulse Effect (Amber Glow) */}
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400/20 animate-ping"></span>
-                    
-                    {/* YOUR LOCAL SVG LOGO */}
-                    <img 
-                      src={firebaseLogo} 
-                      alt="Firebase" 
-                      className="w-4 h-4 object-contain relative z-10"
-                    />
-                 </div>
+      {/* Live Firebase Counter */}
+      <div className="flex items-center gap-2 mt-1 opacity-80 hover:opacity-100 transition-opacity">
+         
+         {/* Logo Container */}
+         <div className="relative flex items-center justify-center w-4 h-4">
+            {/* The Pulse Effect (Amber Glow) */}
+            <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400/20 animate-ping"></span>
+            
+            {/* YOUR LOCAL SVG LOGO */}
+            <img 
+              src={firebaseLogo} 
+              alt="Firebase" 
+              className="w-4 h-4 object-contain relative z-10"
+            />
+         </div>
 
-                 <span className="font-mono text-[10px] font-bold text-slate-400 dark:text-slate-500">
-                    {100} <span className="opacity-60 text-[8px]">Views</span>
-                 </span>
-              </div>
+         {/* visitCount is the variable we defined in PortfolioContext */}
+         <span className="font-mono text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+            {visitCount} <span className="opacity-60 text-[8px]">Views</span>
+         </span>
+      </div>
 
-           </div>
-        </footer>
+   </div>
+</footer>
       </main>
     </div>
   );

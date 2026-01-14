@@ -1,7 +1,13 @@
 // src/config/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase } from "firebase/database"; // Added for View Counter
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { 
+  getDatabase, 
+  ref, 
+  onValue,        // <--- Add this
+  runTransaction  // <--- Add this
+} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -20,5 +26,18 @@ const app = initializeApp(firebaseConfig);
 // Initialize Services
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
+const firestore = getFirestore(app);
 
-export { app, analytics, db };
+export { 
+  app, 
+  analytics, 
+  db, 
+  firestore, 
+  logEvent, 
+  ref, 
+  onValue, 
+  runTransaction,
+  collection, 
+  addDoc, 
+  serverTimestamp
+};

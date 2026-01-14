@@ -163,7 +163,7 @@ const Sidebar = () => {
           <div className="p-4 bg-slate-900 text-opacity-80 font-mono text-[10px]">
             <div className="flex items-center justify-between mb-2 text-white">
               <span className={`flex items-center gap-1 ${theme.text}`}><Activity size={14} /> TERMINAL</span>
-              <span className="text-slate-600">v3.1.0</span>
+              <span className="text-slate-600">v1.0.0</span>
             </div>
             <div className="space-y-1 h-12 overflow-hidden">
                {terminalLogs.map((log, i) => (

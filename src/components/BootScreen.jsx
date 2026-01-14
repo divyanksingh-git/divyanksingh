@@ -51,7 +51,7 @@ const BootScreen = () => {
           <div>
             <div className={`flex items-center gap-2 text-xs font-black uppercase tracking-widest ${theme.text}`}>
               <Terminal size={14} className="shrink-0" />
-              Boot_Sequence_v3.1.0
+              Boot_Sequence_v1.0.0
             </div>
             <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tighter mt-1">
               {data.name.split(' ')[0]}_OS

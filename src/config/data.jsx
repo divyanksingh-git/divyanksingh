@@ -6,6 +6,7 @@ export const DATA = {
   role: "Software Engineer",
   email: "divyanksingh.work@gmail.com",
   linkedin: "linkedin.com/in/itsdivyanksingh",
+  github:"github.com/divyanksingh-git",
   summary: "Technology professional with over 3 years of experience across mobile and web frontends, early-stage product execution, and cloud infrastructure. I bridge the gap between building scalable products and ensuring robust application security. I thrive in fast-moving teams where I can take ownership of the full lifecycle—from high-conversion User Interface development to stable production deployment and incident handling.",
   stats: [
     { label: "Professional Experience", value: "3+ Years" },
