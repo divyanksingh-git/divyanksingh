@@ -54,7 +54,7 @@ const BootScreen = () => {
               Boot_Sequence_v1.0.0
             </div>
             <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tighter mt-1">
-              {data.name.split(' ')[0]}_OS
+              {data.name.split(' ')[0]}_PORTFOLIO
             </h1>
           </div>
           <div className="text-right hidden sm:block">

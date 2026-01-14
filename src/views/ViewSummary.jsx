@@ -15,10 +15,10 @@ const ViewSummary = ({ theme }) => {
           <h1 className="text-6xl font-black text-slate-900 dark:text-slate-50 tracking-tighter mb-2 leading-none">{data.name}</h1>
           <p className="text-xl font-medium text-slate-500 dark:text-slate-400 italic font-serif">{data.role}</p>
         </div>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <a href={`mailto:${data.email}`} className={`p-3 bg-slate-100 dark:bg-slate-800 rounded-xl hover:${theme.color} hover:text-white transition-all shadow-sm`}><Mail size={iconSize}/></a>
           <a href={`https://${data.linkedin}`} target="_blank" className={`p-3 bg-slate-100 dark:bg-slate-800 rounded-xl hover:${theme.color} hover:text-white transition-all shadow-sm`}><Linkedin size={iconSize}/></a>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
