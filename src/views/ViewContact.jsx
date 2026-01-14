@@ -27,7 +27,7 @@ const ViewContact = () => {
             Get in <span className={theme.text}>Touch.</span>
           </h1>
           <p className="text-xl font-medium text-slate-500 dark:text-slate-400 italic font-serif">
-            Available for security architectures & collaborations
+            Available to solve complex engineering & security challenges.
           </p>
         </div>
         
@@ -35,7 +35,7 @@ const ViewContact = () => {
            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${theme.bgLight} ${theme.darkBgLight} ${theme.text} text-[10px] font-black uppercase tracking-widest`}>
               <ShieldCheck size={12} /> Encrypted
            </div>
-           <span className="text-[10px] font-bold text-slate-400 uppercase mr-2 tracking-tighter">Protocol v3.0</span>
+           <span className="text-[10px] font-bold text-slate-400 uppercase mr-2 tracking-tighter">Protocol HTTPS</span>
         </div>
       </div>
 

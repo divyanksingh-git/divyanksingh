@@ -38,7 +38,7 @@ const Sidebar = () => {
   const renderTree = () => (
     <>
       <div className="mb-8">
-        <p className="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest mb-4 ml-2">WHO I AM</p>
+        <p className="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest mb-4 ml-2">WHO AM I</p>
         <TreeItem id="summary" label="Career Overview" icon={User} />
         <TreeItem id="stack-view" label="Technical Skillset" icon={Terminal} />
         <TreeItem id="contact" label="Get in Touch" icon={ExternalLink} />

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Award, Rocket, Shield } from 'lucide-react';
+import iit from '../assets/iit.png'
+import gkv from '../assets/gkv.png'
 
 export const DATA = {
   name: "Divyank Singh",
@@ -109,14 +111,16 @@ export const DATA = {
       school: "IIT Patna",
       degree: "Master of Science in Artificial Intelligence and Cyber Security",
       period: "2026 - Present",
-      location: "Patna"
+      location: "Patna",
+      logo: iit
     },
     {
       id: 'edu-gku',
       school: "Gurukula Kangri (Deemed to be University)",
       degree: "Bachelor of Technology in Computer Science and Engineering",
       period: "2019 - 2023",
-      location: "Haridwar"
+      location: "Haridwar",
+      logo: gkv
     }
   ],
   system_info: {
@@ -145,6 +149,10 @@ export const DATA = {
     ],
 
     architecture: [
+      {
+        name: "Git-Ops CI/CD Pipeline",
+        detail: "Zero-touch deployment workflow. Commits to the GitHub repository automatically trigger Cloudflare Pages build containers, ensuring rapid iteration and atomic rollouts."
+      },
       { 
         name: "Edge Delivery Speed", 
         detail: "Site served via Cloudflare's global edge network, significantly reducing TTFB (Time to First Byte) and providing enterprise-grade DDoS protection." 

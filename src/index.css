@@ -4,3 +4,12 @@
 .grecaptcha-badge { 
   visibility: hidden; 
 }
+
+@layer base {
+  /* Only hide cursor on devices that actually have a mouse (prevent issues on mobile) */
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+}

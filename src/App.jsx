@@ -4,6 +4,7 @@ import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 
 import BootScreen from './components/BootScreen';
 import Sidebar from './components/Sidebar';
+import CustomCursor from './components/CustomCursor';
 
 // Views
 import ViewSummary from './views/ViewSummary';
@@ -15,6 +16,7 @@ import ViewContact from './views/ViewContact';
 import ViewChangelog from './views/ViewChangelog';
 
 import firebaseLogo from './assets/firebase.svg';
+
 
 const PortfolioContent = () => {
   const { 
@@ -50,6 +52,7 @@ const PortfolioContent = () => {
 
   return (
     <div className={`h-screen bg-[#fafafa] dark:bg-slate-950 flex overflow-hidden font-sans text-slate-900 dark:text-slate-100 selection:bg-opacity-30`}>
+      <CustomCursor />
       <Sidebar />
       <main className="flex-1 overflow-y-auto relative bg-white dark:bg-slate-950 flex flex-col w-full">
         

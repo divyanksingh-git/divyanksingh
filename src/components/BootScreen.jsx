@@ -59,7 +59,7 @@ const BootScreen = () => {
           </div>
           <div className="text-right hidden sm:block">
             <div className="text-[10px] text-slate-400 font-bold">TARGET</div>
-            <div className="text-xs font-bold text-slate-700 dark:text-slate-300">LOCALHOST:3000</div>
+            <div className="text-xs font-bold text-slate-700 dark:text-slate-300">itsdivyanksingh.com</div>
           </div>
         </div>
 
