@@ -8,21 +8,18 @@ import { usePortfolio } from '../context/PortfolioContext';
 
 const Sidebar = () => {
   const { 
-    data, theme, themes, iconSize,
-    darkMode, setDarkMode, setCurrentTheme, 
-    terminalLogs, mobileMenuOpen, setMobileMenuOpen,
-    expandedFolders
+    data, theme, themes, iconSize, activeNode, handleNavigate,
+    darkMode, terminalLogs, mobileMenuOpen, setMobileMenuOpen,
+    expandedFolders,toggleDarkMode, changeTheme,hasSeenChangelog,recordDownload
   } = usePortfolio();
 
   const [showSettings, setShowSettings] = useState(false);
   
-  // 1. Create refs for both the popup AND the button
   const settingsRef = useRef(null);
   const btnRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // 2. Logic: Close only if clicking OUTSIDE the popup AND OUTSIDE the button
       if (
         settingsRef.current && 
         !settingsRef.current.contains(event.target) &&
@@ -111,51 +108,71 @@ const Sidebar = () => {
           {renderTree()}
         </div>
 
+        {/* --- HIGHLIGHTED FOOTER SECTION --- */}
         <div className="bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 shrink-0 relative">
           
+          {/* Highlighted Changelog Link */}
+          <div className="px-4 pt-4">
+            <button 
+              onClick={() => handleNavigate('changelog', 'System Changelog')}
+              className={`w-full group relative overflow-hidden flex items-center justify-center gap-3 py-3 rounded-2xl border transition-all duration-300 ${
+                activeNode === 'changelog' 
+                ? `${theme.border} ${theme.bgLight} ${theme.text} shadow-md` 
+                : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+              }`}
+            >
+              <Activity size={16} className={activeNode === 'changelog' ? theme.text : 'text-slate-400 group-hover:text-slate-600'} />
+              <div className="flex flex-col items-start leading-tight">
+                <span className={`text-[10px] font-black uppercase tracking-widest ${activeNode === 'changelog' ? theme.text : 'text-slate-500'}`}>System Changelog</span>
+                <span className="text-[9px] font-mono opacity-60 italic">Stable Release v1.0.0</span>
+              </div>
+              {(activeNode !== 'changelog' && !hasSeenChangelog) && (
+                <span className={`absolute right-3 top-3 w-1.5 h-1.5 rounded-full ${theme.color} animate-pulse`} />
+              )}
+            </button>
+          </div>
+
           {showSettings && (
              <div 
                ref={settingsRef}
                className="absolute bottom-full left-4 mb-2 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl z-[100] p-4 animate-in fade-in zoom-in-95 slide-in-from-bottom-2"
              >
-                <div className="flex items-center justify-between mb-4 px-1">
-                   <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 flex items-center gap-2">
-                     <Palette size={iconSize} /> Appearance
-                   </span>
-                   <button onClick={() => setShowSettings(false)} className="text-slate-300 dark:text-slate-600 hover:text-slate-500"><X size={iconSize}/></button>
-                </div>
-                
                 <div className="flex items-center justify-between p-2 bg-slate-50 dark:bg-slate-800 rounded-xl mb-4 border border-slate-100 dark:border-slate-700">
-                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Mode</span>
-                   <button 
-                     onClick={() => setDarkMode(!darkMode)}
-                     className="flex items-center gap-2 px-3 py-1 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-blue-500 transition-all dark:text-white"
-                   >
-                     {darkMode ? <Sun size={iconSize} className="text-amber-500" /> : <Moon size={iconSize} className="text-blue-500" />}
-                     {darkMode ? 'Light' : 'Dark'}
-                   </button>
-                </div>
+       <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">Mode</span>
+       <button 
+         onClick={() => toggleDarkMode(!darkMode)} // Using the new logged function
+         className="flex items-center gap-2 px-3 py-1 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-sm hover:border-blue-500 transition-all dark:text-white"
+       >
+         {darkMode ? <Sun size={iconSize} className="text-amber-500" /> : <Moon size={iconSize} className="text-blue-500" />}
+         {darkMode ? 'Light' : 'Dark'}
+       </button>
+    </div>
 
-                <div className="grid grid-cols-3 gap-2">
-                   {themes.map((t) => (
-                     <button key={t.id} onClick={() => setCurrentTheme(t)} className={`h-12 rounded-xl transition-all border-2 flex items-center justify-center ${t.id === theme.id ? theme.border : 'border-transparent'}`} title={t.name}>
-                       <div className={`w-6 h-6 rounded-full ${t.color} shadow-sm border border-white/20`} />
-                     </button>
-                   ))}
-                </div>
+    <div className="grid grid-cols-3 gap-2">
+       {themes.map((t) => (
+         <button 
+           key={t.id} 
+           onClick={() => changeTheme(t)} // Using the new logged function
+           className={`h-12 rounded-xl transition-all border-2 flex items-center justify-center ${t.id === theme.id ? theme.border : 'border-transparent'}`} 
+           title={t.name}
+         >
+           <div className={`w-6 h-6 rounded-full ${t.color} shadow-sm border border-white/20`} />
+         </button>
+       ))}
+    </div>
              </div>
           )}
 
           <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex gap-2">
              <button 
-                ref={btnRef} // 3. Attach Ref to the button
+                ref={btnRef}
                 onClick={() => setShowSettings(!showSettings)} 
                 className={`p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors ${showSettings ? 'text-blue-500 border-blue-200' : 'text-slate-500 dark:text-slate-400'}`} 
                 title="Settings"
              >
                 <Settings size={18} />
              </button>
-             <a href="/Divyank-Resume.pdf" download className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest text-white ${theme.color} hover:opacity-90 transition-opacity shadow-sm`}>
+             <a onClick={recordDownload} href="/Divyank-Resume.pdf" download className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest text-white ${theme.color} hover:opacity-90 transition-opacity shadow-sm`}>
                 <Download size={14} /> Download CV
               </a>
           </div>

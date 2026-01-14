@@ -7,6 +7,8 @@ export const DATA = {
   email: "divyanksingh.work@gmail.com",
   linkedin: "linkedin.com/in/itsdivyanksingh",
   github:"github.com/divyanksingh-git",
+  domain: "itsdivyanksingh.com",
+  repo_url: "https://github.com/divyanksingh-git/divyanksingh",
   summary: "Technology professional with over 3 years of experience across mobile and web frontends, early-stage product execution, and cloud infrastructure. I bridge the gap between building scalable products and ensuring robust application security. I thrive in fast-moving teams where I can take ownership of the full lifecycle—from high-conversion User Interface development to stable production deployment and incident handling.",
   stats: [
     { label: "Professional Experience", value: "3+ Years" },
@@ -116,5 +118,45 @@ export const DATA = {
       period: "2019 - 2023",
       location: "Haridwar"
     }
-  ]
+  ],
+  system_info: {
+    release: "v1.0.0",
+    hosting: "Cloudflare Pages (Managed Edge Network)",
+    security: "Cloudflare WAF + reCAPTCHA v3 + Firestore Security Rules",
+    ai_integration: "Generative AI utilized for accelerating boilerplate development, optimizing component architecture, and refining technical documentation for recruitment clarity.",
+    
+    core_features: [
+      { 
+        title: "Real-time Traffic Analytics", 
+        detail: "Firebase Realtime Database implementation using atomic transactions to ensure thread-safe visit increments without data collisions." 
+      },
+      { 
+        title: "Stateful Terminal Engine", 
+        detail: "Centralized Context API managing real-time navigation paths, persistent theme preferences, and localized system activity logs." 
+      },
+      { 
+        title: "Bot Mitigation Pipeline", 
+        detail: "Invisible reCAPTCHA v3 integration that assigns risk scores to submissions, protecting the database from automated spam." 
+      },
+      { 
+        title: "Responsive IDE Interface", 
+        detail: "A mobile-first recursive tree architecture demonstrating mastery over conditional rendering and nested data structures." 
+      }
+    ],
+
+    architecture: [
+      { 
+        name: "Edge Delivery Speed", 
+        detail: "Site served via Cloudflare's global edge network, significantly reducing TTFB (Time to First Byte) and providing enterprise-grade DDoS protection." 
+      },
+      { 
+        name: "Secure Data Ingestion", 
+        detail: "Isolation of contact payloads within a strictly scoped Firestore collection, enforced by 'Write-Only' security rules." 
+      },
+      { 
+        name: "Semantic SEO Purity", 
+        detail: "Structured HTML5 with dynamic meta-tag injection to ensure maximum indexability and accessibility for technical crawlers." 
+      }
+    ]
+  },
 };

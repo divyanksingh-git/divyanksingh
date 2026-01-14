@@ -25,7 +25,7 @@ const BootScreen = () => {
           clearInterval(timer);
           return 100;
         }
-        // Random increment for "hacky" feel
+        // Random increment for "hacky" feelnow this is complete 
         const diff = Math.random() * 15;
         return Math.min(old + diff, 100);
       });

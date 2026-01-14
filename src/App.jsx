@@ -12,6 +12,7 @@ import ViewProject from './views/ViewProject';
 import ViewSkills from './views/ViewSkills';
 import ViewEducation from './views/ViewEducation';
 import ViewContact from './views/ViewContact';
+import ViewChangelog from './views/ViewChangelog';
 
 import firebaseLogo from './assets/firebase.svg';
 
@@ -38,6 +39,7 @@ const PortfolioContent = () => {
     if (activeNode === 'summary') return <ViewSummary theme={theme} />;
     if (activeNode === 'stack-view') return <ViewSkills theme={theme} />;
     if (activeNode === 'contact') return <ViewContact theme={theme} />;
+    if (activeNode === 'changelog') return <ViewChangelog />; 
     if (exp) return <ViewExperience exp={exp} theme={theme} />;
     if (proj) return <ViewProject proj={proj} theme={theme} />;
     if (edu) return <ViewEducation edu={edu} theme={theme} />;
@@ -107,7 +109,7 @@ const PortfolioContent = () => {
        
        {/* SOCIAL LINKS GROUP */}
        <div className="flex gap-3 justify-center md:justify-start text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">
-          <a href={`mailto:${data.email}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors lowercase">Email</a>
+          <a href={`mailto:${data.email}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors lowercase">{data.email}</a>
           <span className="opacity-30">/</span>
           <a href={`https://${data.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">LinkedIn</a>
           <span className="opacity-30">/</span>
