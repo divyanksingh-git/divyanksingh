@@ -51,8 +51,9 @@ const PortfolioContent = () => {
   if (isBooting) return <>
   <div className="hidden min-[960px]:block">
   <CustomCursor />
-  <BootScreen />
+  
 </div>
+<BootScreen />
   </> 
 
   return (
