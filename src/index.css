@@ -4,10 +4,12 @@
 .grecaptcha-badge { 
   visibility: hidden; 
 }
-
 @layer base {
-  /* Only hide cursor on devices that actually have a mouse (prevent issues on mobile) */
-  @media (pointer: fine) {
+  /* Apply 'cursor: none' ONLY if:
+    1. The screen is 960px or wider
+    2. The device has a mouse (pointer: fine)
+  */
+  @media (min-width: 960px) and (pointer: fine) {
     * {
       cursor: none !important;
     }

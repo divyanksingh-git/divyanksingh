@@ -48,11 +48,18 @@ const PortfolioContent = () => {
     return null;
   };
 
-  if (isBooting) return <BootScreen />;
+  if (isBooting) return <>
+  <div className="hidden min-[960px]:block">
+  <CustomCursor />
+  <BootScreen />
+</div>
+  </> 
 
   return (
     <div className={`h-screen bg-[#fafafa] dark:bg-slate-950 flex overflow-hidden font-sans text-slate-900 dark:text-slate-100 selection:bg-opacity-30`}>
-      <CustomCursor />
+      <div className="hidden min-[960px]:block">
+  <CustomCursor />
+</div>
       <Sidebar />
       <main className="flex-1 overflow-y-auto relative bg-white dark:bg-slate-950 flex flex-col w-full">
         
