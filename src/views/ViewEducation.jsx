@@ -59,7 +59,7 @@ const ViewEducation = ({ edu, theme }) => {
             {/* Period - Flat Icon Style */}
             <div className="flex items-center gap-4">
               <div className={`${theme.text}`}>
-                <Clock size={20} strokeWidth={3} className='text-slate-400' />
+                <Clock size={20} strokeWidth={2} className='text-slate-400' />
               </div>
               <div>
                 <div className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Timeline</div>
@@ -70,7 +70,7 @@ const ViewEducation = ({ edu, theme }) => {
             {/* Location - Flat Icon Style */}
             <div className="flex items-center gap-4">
               <div className={`${theme.text}`}>
-                <MapPin size={20} strokeWidth={3} className='text-slate-400'  />
+                <MapPin size={20} strokeWidth={2} className='text-slate-400'  />
               </div>
               <div>
                 <div className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Location</div>
