@@ -28,7 +28,7 @@ export const PortfolioProvider = ({ children }) => {
     "[SYS] Status: Ready for Recruitment Review."
   ]);
   const [isBooting, setIsBooting] = useState(true);
-  const [currentTheme, setCurrentTheme] = useState(STATIC_THEMES[0]);
+  const [currentTheme, setCurrentTheme] = useState(STATIC_THEMES[5]);
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasSeenChangelog, setHasSeenChangelog] = useState(false);
